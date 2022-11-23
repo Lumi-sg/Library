@@ -4,9 +4,75 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>Library</title>
 		<link rel="stylesheet" href="style.css" />
-		<script src="script.js"></script>
+		<script src="script.js" defer></script>
 	</head>
-	<body></body>
+	<body>
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<div class="modalEntryDiv">
+					<form action="" method="get">
+						<h3>Add a Book</h3>
+						<input
+							type="text"
+							id="title"
+							placeholder="Title"
+							required="required"
+							maxlength="25"
+						/>
+						<input
+							type="text"
+							id="author"
+							placeholder="Author"
+							maxlength="50"
+						/>
+						<input
+							type="number"
+							id="rating"
+							placeholder="Rating"
+							min="1"
+							max="10"
+						/>
+						<label for="yearPublished">Date of Publication</label>
+						<input
+							type="date"
+							id="yearPublished"
+							placeholder="Year Published"
+							min="0001-01-01"
+							max="9999-99-99"
+						/>
+						<div class="modal-alert-box"></div>
+						<div class="hasRead">
+							<label for="read">Mark as read:</label>
+							<input type="checkbox" id="read" class="read" />
+						</div>
+						<button type="button" class="submit-book-button">
+							Add Book
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="main-container">
+			<div class="header">
+				<img src="./l2l92agj.bmp" />
+			</div>
+			<div class="buttons-area">
+				<button id="addBook">Add Book</button>
+			</div>
+			<div class="sidebar">
+				<div class="book-status">
+					<div class="unreadBooks"></div>
+					<div class="readBooks"></div>
+				</div>
+			</div>
+			<div class="library">
+				<div class="book-card"></div>
+			</div>
+		</div>
+	</body>
 </html>

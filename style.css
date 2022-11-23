@@ -1,0 +1,102 @@
+body {
+	background-color: #202020;
+	color: aliceblue;
+}
+
+.main-container {
+	display: grid;
+	grid-template-columns: 1fr 5fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-areas:
+		"header buttons-area"
+		"sidebar library"
+		"sidebar library"
+		"sidebar library"
+		"sidebar library";
+	height: 100vh;
+}
+
+.header {
+	grid-area: header;
+	display: flex;
+	height: 20vh;
+	width: auto;
+}
+
+.buttons-area {
+	grid-area: buttons-area;
+	background: #202020;
+	display: flex;
+	justify-content: flex-end;
+}
+
+#addBook {
+	color: #202020;
+	align-self: flex-end;
+}
+
+.logo-column {
+	display: flex;
+	justify-content: flex-start;
+	color: #202020;
+}
+
+.sidebar {
+	grid-area: sidebar;
+	background-color: #202020;
+}
+
+.library {
+	grid-area: library;
+	background-color: #444444;;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	overflow: auto; /* Enable scroll if needed */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #202020;
+	margin: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	border: 1px solid rgb(99, 99, 99);
+	width: 25vh;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modalEntryDiv > form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+input {
+	width: 12vh;
+	margin: 0.5em;
+}
