@@ -22,12 +22,6 @@ yearPublished.max = new Date().toLocaleDateString("en-ca");
 
 let myLibrary = [];
 
-let bookTitle = document.querySelector("#title").value;
-let bookAuthor = document.querySelector("#author").value;
-let bookRating = document.querySelector("#rating").value;
-let bookYearPublished = document.querySelector("#yearPublished").value;
-let bookHasRead = document.querySelector("#read").value;
-
 class Book {
 	constructor(title, author, date, rating, status) {
 		this.title = title;
@@ -39,6 +33,12 @@ class Book {
 }
 
 addBookToArray.addEventListener("click", () => {
+	let bookTitle = document.querySelector("#title").value;
+	let bookAuthor = document.querySelector("#author").value;
+	let bookRating = document.querySelector("#rating").value;
+	let bookYearPublished = document.querySelector("#yearPublished").value;
+	let bookHasRead = document.querySelector("#read").checked;
+
 	const newBook = new Book(
 		bookTitle,
 		bookAuthor,
@@ -56,7 +56,7 @@ function resetModalValues() {
 	bookAuthorInput.value = "";
 	bookRatingInput.value = "";
 	bookYearPublishedInput.value = "";
-	bookHasReadInput.value = "";
+	bookHasReadInput.checked = false;
 }
 
 function openBookModal() {
@@ -67,4 +67,3 @@ function closeBookModal() {
 	resetModalValues();
 	modal.style.display = "none";
 }
-// AddBook();
