@@ -29,22 +29,14 @@
 							type="text"
 							id="author"
 							placeholder="Author"
-							maxlength="50"
+							maxlength="25"
 						/>
 						<input
 							type="number"
-							id="rating"
-							placeholder="Rating"
+							id="pages"
+							placeholder="Pages"
 							min="1"
-							max="10"
-						/>
-						<label for="yearPublished">Date of Publication</label>
-						<input
-							type="date"
-							id="yearPublished"
-							placeholder="Year Published"
-							min="0001-01-01"
-							max="9999-99-99"
+							max="10000"
 						/>
 						<div class="modal-alert-box"></div>
 						<div class="hasRead">
@@ -70,9 +62,7 @@
 					<div class="readBooks"></div>
 				</div>
 			</div>
-			<div class="library">
-				<div class="book-card"></div>
-			</div>
+			<div class="library"></div>
 		</div>
 	</body>
 </html>

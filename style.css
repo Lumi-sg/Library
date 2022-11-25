@@ -43,6 +43,25 @@ body {
 .library {
 	grid-area: library;
 	background-color: #444444;
+	display: grid;
+	justify-content: space-around;
+	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+	grid-template-rows: repeat(auto-fill, minmax(10rem, 2rem));
+	gap: 5rem;
+}
+
+.bookCard {
+	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+	background-color: #202020;
+	align-items: center;
+	justify-content: center;
+	border: white 1px solid;
+	height: 20vh;
+	width: minmax(auto, 50vh);
+	line-height: 32px; /* within paragraph */
+	margin-bottom: 30px; /* between paragraphs */
 }
 
 /* The Modal (background) */
@@ -93,4 +112,23 @@ body {
 input {
 	width: 12vh;
 	margin: 0.5em;
+}
+
+.bookCard > button {
+	margin-top: 1rem;
+}
+
+button {
+	color: #202020;
+	cursor: pointer;
+
+}
+
+#addBook {
+	border-radius: 50%;
+	height: 8vh;
+	width: 8vh;
+	margin: 1rem;
+	font-weight: bold;
+	cursor: pointer;
 }

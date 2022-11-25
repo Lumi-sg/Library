@@ -3,10 +3,24 @@ const modal = document.querySelector(".modal");
 const modalSpan = document.getElementsByClassName("close")[0];
 const bookTitleInput = document.querySelector("#title");
 const bookAuthorInput = document.querySelector("#author");
-const bookRatingInput = document.querySelector("#rating");
-const bookYearPublishedInput = document.querySelector("#yearPublished");
+const bookPagesInput = document.querySelector("#pages");
 const bookHasReadInput = document.querySelector("#read");
 const addBookToArray = document.querySelector(".addBookToArray");
+const onPageLibrary = document.querySelector(".library");
+
+class Book {
+	constructor(title, author, pages, status) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.status = status;
+	}
+}
+
+const DEFAULT_BOOK1 = new Book("The Hobbit", "J. R. R. Tolkien", 310, true);
+const DEFAULT_BOOK2 = new Book("Mistborn: The Final Empire", "Brandon Sanderson", 541, true);
+const DEFAULT_BOOK3 = new Book("A Game of Thrones", "George R. R. Martin", 694, true);
+const DEFAULT_BOOK4 = new Book("The Eye of the World", "Robert Jordan", 782, false);
 
 openModal.addEventListener("click", () => {
 	openBookModal();
@@ -16,46 +30,92 @@ modalSpan.addEventListener("click", () => {
 	closeBookModal();
 });
 
-//date validation
-let yearPublished = document.getElementById("yearPublished");
-yearPublished.max = new Date().toLocaleDateString("en-ca");
-
 let myLibrary = [];
 
-class Book {
-	constructor(title, author, date, rating, status) {
-		this.title = title;
-		this.author = author;
-		this.date = date;
-		this.rating = rating;
-		this.status = status;
-	}
-}
+myLibrary.push(DEFAULT_BOOK1);
+myLibrary.push(DEFAULT_BOOK2);
+myLibrary.push(DEFAULT_BOOK3);
+myLibrary.push(DEFAULT_BOOK4);
+
+myLibrary.forEach(createBookCard);
 
 addBookToArray.addEventListener("click", () => {
-	let bookTitle = document.querySelector("#title").value;
-	let bookAuthor = document.querySelector("#author").value;
-	let bookRating = document.querySelector("#rating").value;
-	let bookYearPublished = document.querySelector("#yearPublished").value;
-	let bookHasRead = document.querySelector("#read").checked;
-
-	const newBook = new Book(
-		bookTitle,
-		bookAuthor,
-		bookYearPublished,
-		bookRating,
-		bookHasRead
-	);
+	const newBook = createNewBook();
 	myLibrary.push(newBook);
-	console.table(myLibrary);
+
+	createBookCard(newBook);
+
 	closeBookModal();
 });
+
+function createBookCard(newBook) {
+	const bookCard = document.createElement("div");
+	bookCard.classList.add("bookCard");
+
+	const title = document.createElement("p");
+	const author = document.createElement("p");
+	const pages = document.createElement("p");
+	const readButton = document.createElement("button");
+	const readButtonText = document.createTextNode("Mark as read");
+	const deleteButton = document.createElement("button");
+	const deleteButtonText = document.createTextNode("Remove Book");
+
+	title.textContent = `Title: ${newBook.title}`;
+	author.textContent = `Author: ${newBook.author}`;
+	pages.textContent = `Pages: ${newBook.pages}`;
+
+	bookCard.appendChild(title);
+	bookCard.appendChild(author);
+	bookCard.appendChild(pages);
+	readButton.appendChild(readButtonText);
+	bookCard.appendChild(readButton);
+
+	deleteButton.appendChild(deleteButtonText);
+	bookCard.appendChild(deleteButton);
+
+	onPageLibrary.insertAdjacentElement("beforeend", bookCard);
+
+	if (newBook.status === true) {
+		bookCard.style.borderColor = "green";
+		readButtonText.textContent = "Mark as un-read";
+	} else {
+		bookCard.style.borderColor = "red";
+		readButtonText.textContent = "Mark as read";
+	}
+
+	readButton.addEventListener("click", () => {
+		if (newBook.status === false) {
+			newBook.status = true;
+			bookCard.style.borderColor = "green";
+			readButtonText.textContent = "Mark as un-read";
+		} else {
+			newBook.status = false;
+			bookCard.style.borderColor = "red";
+			readButtonText.textContent = "Mark as read";
+		}
+	});
+
+	deleteButton.addEventListener("click", () => {
+		const currentBookIndex = myLibrary.indexOf(newBook);
+		myLibrary.splice(currentBookIndex, 1);
+		onPageLibrary.textContent = "";
+		myLibrary.forEach(createBookCard);
+	});
+}
+
+function createNewBook() {
+	return new Book(
+		document.querySelector("#title").value,
+		document.querySelector("#author").value,
+		document.querySelector("#pages").value,
+		document.querySelector("#read").checked
+	);
+}
 
 function resetModalValues() {
 	bookTitleInput.value = "";
 	bookAuthorInput.value = "";
-	bookRatingInput.value = "";
-	bookYearPublishedInput.value = "";
+	bookPagesInput.value = "";
 	bookHasReadInput.checked = false;
 }
 
