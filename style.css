@@ -5,7 +5,7 @@ body {
 
 .main-container {
 	display: grid;
-	grid-template-columns: 1fr 5fr;
+	grid-template-columns: minmax(50px, 1fr) minmax(250px, 5fr);
 	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-areas:
 		"header header"
@@ -47,19 +47,19 @@ body {
 	justify-content: space-around;
 	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 	grid-template-rows: repeat(auto-fill, minmax(10rem, 2rem));
-	gap: 5rem;
+	row-gap: 5rem;
 }
 
 .bookCard {
-	margin: 1rem;
+	margin: 2rem;
+	padding: 0.5rem;
 	display: flex;
 	flex-direction: column;
 	background-color: #202020;
 	align-items: center;
 	justify-content: center;
 	border: white 1px solid;
-	height: 20vh;
-	width: minmax(auto, 50vh);
+	height: fit-content;
 	line-height: 32px; /* within paragraph */
 	margin-bottom: 30px; /* between paragraphs */
 }
@@ -68,7 +68,7 @@ body {
 .modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
+	z-index: 3; /* Sit on top */
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -79,12 +79,11 @@ body {
 /* Modal Content */
 .modal-content {
 	background-color: #202020;
-	margin: auto;
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-bottom: 20px;
-	border: 1px solid rgb(99, 99, 99);
-	width: 25vh;
+	border: 2px solid rgb(255, 255, 255);
+	width: auto;
+	height: auto;
 }
 
 /* The Close Button */
@@ -107,9 +106,24 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin: 1rem;
 }
 
-input {
+.hasRead {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 1rem;
+}
+
+.hasRead > label {
+}
+
+.hasRead > input {
+	align-self: flex-end;
+}
+.modalEntryDiv > form > input {
 	width: 12vh;
 	margin: 0.5em;
 }
@@ -121,7 +135,6 @@ input {
 button {
 	color: #202020;
 	cursor: pointer;
-
 }
 
 #addBook {
@@ -129,6 +142,11 @@ button {
 	height: 8vh;
 	width: 8vh;
 	margin: 1rem;
+	font-size: large;
 	font-weight: bold;
 	cursor: pointer;
+}
+
+.modalIsOpen {
+	filter: blur(1px) brightness(0.8);
 }

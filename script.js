@@ -7,6 +7,7 @@ const bookPagesInput = document.querySelector("#pages");
 const bookHasReadInput = document.querySelector("#read");
 const addBookToArray = document.querySelector(".addBookToArray");
 const onPageLibrary = document.querySelector(".library");
+const mainContainer = document.querySelector(".main-container");
 
 class Book {
 	constructor(title, author, pages, status) {
@@ -49,6 +50,8 @@ addBookToArray.addEventListener("click", () => {
 });
 
 function createBookCard(newBook) {
+	const cardContainer = document.createElement("div");
+	cardContainer.classList.add("cardContainer");
 	const bookCard = document.createElement("div");
 	bookCard.classList.add("bookCard");
 
@@ -60,8 +63,8 @@ function createBookCard(newBook) {
 	const deleteButton = document.createElement("button");
 	const deleteButtonText = document.createTextNode("Remove Book");
 
-	title.textContent = `Title: ${newBook.title}`;
-	author.textContent = `Author: ${newBook.author}`;
+	title.textContent = `${newBook.title}`;
+	author.textContent = `By: ${newBook.author}`;
 	pages.textContent = `Pages: ${newBook.pages}`;
 
 	bookCard.appendChild(title);
@@ -121,9 +124,11 @@ function resetModalValues() {
 
 function openBookModal() {
 	modal.style.display = "block";
+	mainContainer.className += " modalIsOpen";
 }
 
 function closeBookModal() {
 	resetModalValues();
 	modal.style.display = "none";
+	mainContainer.className = " main-container";
 }
