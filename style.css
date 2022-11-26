@@ -5,7 +5,7 @@ body {
 
 .main-container {
 	display: grid;
-	grid-template-columns: minmax(50px, 1fr) minmax(250px, 5fr);
+	grid-template-columns: minmax(50px, 0.8fr) minmax(250px, 5fr);
 	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-areas:
 		"header header"
@@ -21,11 +21,13 @@ body {
 	display: flex;
 	height: 20vh;
 	width: auto;
-	justify-content: space-between;
+	justify-content: flex-end;
+	background-color: black;
 }
 
 #addBook {
 	color: #202020;
+
 	align-self: flex-end;
 }
 
@@ -37,7 +39,21 @@ body {
 
 .sidebar {
 	grid-area: sidebar;
-	background-color: #202020;
+	display: flex;
+	flex-direction: column;
+	font-size: large;
+	align-items: center;
+}
+
+.sidebar > h3 {
+	margin: 1rem;
+	font-size: larger;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.sidebar > p {
+	margin-bottom: 1rem;
 }
 
 .library {
@@ -58,7 +74,7 @@ body {
 	background-color: #202020;
 	align-items: center;
 	justify-content: center;
-	border: white 1px solid;
+	border: 3px solid;
 	height: fit-content;
 	line-height: 32px; /* within paragraph */
 	margin-bottom: 30px; /* between paragraphs */
@@ -117,8 +133,8 @@ body {
 	margin: 1rem;
 }
 
-.hasRead > label {
-}
+/* .hasRead > label {
+} */
 
 .hasRead > input {
 	align-self: flex-end;

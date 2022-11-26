@@ -8,6 +8,9 @@ const bookHasReadInput = document.querySelector("#read");
 const addBookToArray = document.querySelector(".addBookToArray");
 const onPageLibrary = document.querySelector(".library");
 const mainContainer = document.querySelector(".main-container");
+const readBooksResult = document.querySelector(".readBooksResult");
+const unreadBooksResult = document.querySelector(".unreadBooksResult");
+const totalPagesRead = document.querySelector(".pagesReadResult");
 
 class Book {
 	constructor(title, author, pages, status) {
@@ -37,6 +40,15 @@ myLibrary.push(DEFAULT_BOOK1);
 myLibrary.push(DEFAULT_BOOK2);
 myLibrary.push(DEFAULT_BOOK3);
 myLibrary.push(DEFAULT_BOOK4);
+updateCounters();
+
+function updateCounters() {
+	const totalBooksRead = myLibrary.filter((b) => b.status).length;
+	const totalNumberBooks = myLibrary.length;
+
+	readBooksResult.innerText = totalBooksRead;
+	unreadBooksResult.innerText = totalNumberBooks - totalBooksRead;
+}
 
 myLibrary.forEach(createBookCard);
 
@@ -97,7 +109,7 @@ function createBookCard(newBook) {
 			readButtonText.textContent = "Mark as read";
 		}
 	});
-
+	updateCounters();
 	deleteButton.addEventListener("click", () => {
 		const currentBookIndex = myLibrary.indexOf(newBook);
 		myLibrary.splice(currentBookIndex, 1);

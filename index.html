@@ -7,7 +7,7 @@
 		<title>Library</title>
 		<link rel="stylesheet" href="style.css" />
 		<link rel="stylesheet" href="reset.css" />
-		<script src="script.js" defer></script>
+		<script src="./script.js" defer></script>
 	</head>
 	<body>
 		<!-- The Modal -->
@@ -16,25 +16,22 @@
 			<div class="modal-content">
 				<span class="close">&times;</span>
 				<div class="modalEntryDiv">
-					<form action="" method="get">
+					<form action="" id="form" method="get">
 						<h3>Add a Book</h3>
 						<input
 							type="text"
 							id="title"
 							placeholder="Title"
 							required="required"
-							maxlength="25"
+							minlength="1"
+							maxlength="30"
 						/>
-						<input
-							type="text"
-							id="author"
-							placeholder="Author"
-							maxlength="25"
-						/>
+						<input type="text" id="author" placeholder="Author" maxlength="25" />
 						<input
 							type="number"
 							id="pages"
 							placeholder="Pages"
+							pattern="[0-9]*"
 							min="1"
 							max="10000"
 						/>
@@ -43,24 +40,25 @@
 							<label for="read">Mark as read?</label>
 							<input type="checkbox" id="read" class="read" />
 						</div>
-						<button type="button" class="addBookToArray">
-							Add Book
-						</button>
+						<button type="button" class="addBookToArray">Add Book</button>
 					</form>
 				</div>
 			</div>
 		</div>
 		<div class="main-container">
 			<div class="header">
-				<img src="./l2l92agj.bmp" />
 				<button id="addBook">Add Book</button>
 			</div>
 
 			<div class="sidebar">
-				<div class="book-status">
-					<div class="unreadBooks"></div>
-					<div class="readBooks"></div>
-				</div>
+				<h3>Books Read</h3>
+				<p class="readBooksResult">1</p>
+
+				<h3>Unread Books</h3>
+				<p class="unreadBooksResult">1</p>
+
+				<h3>Pages Read</h3>
+				<p class="pagesReadResult">1</p>
 			</div>
 			<div class="library"></div>
 		</div>
