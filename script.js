@@ -24,15 +24,8 @@ class Book {
 // This is an array that will hold all the default books
 const defaultBooks = [
   new Book("The Hobbit", "J.R.R. Tolkien", 295, true),
-  new Book("The Lord of the Rings", "J.R.R. Tolkien", 1216, false),
-  new Book("The Silmarillion", "J.R.R. Tolkien", 480, true),
-  new Book("The Fellowship of the Ring", "J.R.R. Tolkien", 423, false),
-  new Book("The Two Towers", "J.R.R. Tolkien", 352, true),
-  new Book("The Return of the King", "J.R.R. Tolkien", 416, false),
-  new Book("The Children of Hurin", "J.R.R. Tolkien", 352, true),
   new Book("A Game of Thrones", "George R.R. Martin", 694, false),
   new Book("Mistborn: The Final Empire", "Brandon Sanderson", 541, true),
-  new Book("The Way of Kings", "Brandon Sanderson", 1007, false),
 ];
 
 openModal.addEventListener("click", () => {
