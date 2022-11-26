@@ -40,27 +40,25 @@ myLibrary.push(DEFAULT_BOOK1);
 myLibrary.push(DEFAULT_BOOK2);
 myLibrary.push(DEFAULT_BOOK3);
 myLibrary.push(DEFAULT_BOOK4);
-updateCounters();
+myLibrary.forEach(createBookCard);
 
 function updateCounters() {
 	const totalBooksRead = myLibrary.filter((b) => b.status).length;
 	const totalNumberBooks = myLibrary.length;
 	const totalPagesRead = myLibrary.reduce((accumulator, book) => {
-		return (accumulator += book.pages);
+		return parseFloat(accumulator) + parseFloat(book.pages);
 	}, 0);
 
 	if (myLibrary.length < 1) {
-		readBooksResult.innerText = "0";
-		unreadBooksResult.innerText = "0";
-		pagesCounter.innerText = "0";
+		readBooksResult.innerText = 0;
+		unreadBooksResult.innerText = 0;
+		pagesCounter.innerText = 0;
 	} else {
 		readBooksResult.innerText = totalBooksRead;
 		unreadBooksResult.innerText = totalNumberBooks - totalBooksRead;
 		pagesCounter.innerText = totalPagesRead.toLocaleString();
 	}
 }
-
-myLibrary.forEach(createBookCard);
 
 addBookToArray.addEventListener("click", () => {
 	const newBook = createNewBook();
@@ -107,7 +105,7 @@ function createBookCard(newBook) {
 		bookCard.style.borderColor = "red";
 		readButtonText.textContent = "Mark as read";
 	}
-
+	updateCounters();
 	readButton.addEventListener("click", () => {
 		if (newBook.status === false) {
 			newBook.status = true;
@@ -121,7 +119,7 @@ function createBookCard(newBook) {
 			readButtonText.textContent = "Mark as read";
 		}
 	});
-	updateCounters();
+
 	deleteButton.addEventListener("click", () => {
 		const currentBookIndex = myLibrary.indexOf(newBook);
 		myLibrary.splice(currentBookIndex, 1);
