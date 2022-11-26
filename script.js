@@ -49,9 +49,15 @@ function updateCounters() {
 		return (accumulator += book.pages);
 	}, 0);
 
-	readBooksResult.innerText = totalBooksRead;
-	unreadBooksResult.innerText = totalNumberBooks - totalBooksRead;
-	pagesCounter.innerText = totalPagesRead.toLocaleString();
+	if (myLibrary.length < 1) {
+		readBooksResult.innerText = "0";
+		unreadBooksResult.innerText = "0";
+		pagesCounter.innerText = "0";
+	} else {
+		readBooksResult.innerText = totalBooksRead;
+		unreadBooksResult.innerText = totalNumberBooks - totalBooksRead;
+		pagesCounter.innerText = totalPagesRead.toLocaleString();
+	}
 }
 
 myLibrary.forEach(createBookCard);
@@ -105,10 +111,12 @@ function createBookCard(newBook) {
 	readButton.addEventListener("click", () => {
 		if (newBook.status === false) {
 			newBook.status = true;
+			updateCounters();
 			bookCard.style.borderColor = "green";
 			readButtonText.textContent = "Mark as un-read";
 		} else {
 			newBook.status = false;
+			updateCounters();
 			bookCard.style.borderColor = "red";
 			readButtonText.textContent = "Mark as read";
 		}
@@ -119,6 +127,7 @@ function createBookCard(newBook) {
 		myLibrary.splice(currentBookIndex, 1);
 		onPageLibrary.textContent = "";
 		myLibrary.forEach(createBookCard);
+		updateCounters();
 	});
 }
 
