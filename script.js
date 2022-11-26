@@ -10,7 +10,7 @@ const onPageLibrary = document.querySelector(".library");
 const mainContainer = document.querySelector(".main-container");
 const readBooksResult = document.querySelector(".readBooksResult");
 const unreadBooksResult = document.querySelector(".unreadBooksResult");
-const totalPagesRead = document.querySelector(".pagesReadResult");
+const pagesCounter = document.querySelector(".pagesReadResult");
 
 class Book {
 	constructor(title, author, pages, status) {
@@ -45,9 +45,13 @@ updateCounters();
 function updateCounters() {
 	const totalBooksRead = myLibrary.filter((b) => b.status).length;
 	const totalNumberBooks = myLibrary.length;
+	const totalPagesRead = myLibrary.reduce((accumulator, book) => {
+		return (accumulator += book.pages);
+	}, 0);
 
 	readBooksResult.innerText = totalBooksRead;
 	unreadBooksResult.innerText = totalNumberBooks - totalBooksRead;
+	pagesCounter.innerText = totalPagesRead.toLocaleString();
 }
 
 myLibrary.forEach(createBookCard);
