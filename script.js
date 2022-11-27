@@ -27,7 +27,7 @@ const defaultBooks = [
 	new Book("The Hobbit", "J.R.R. Tolkien", 295, true),
 	new Book("A Game of Thrones", "George R.R. Martin", 694, true),
 	new Book("Mistborn: The Final Empire", "Brandon Sanderson", 541, true),
-	new Book("New Spring", "Robert Jordan", 304, false),
+	new Book("The Eye of the World", "Robert Jordan", 782, false),
 ];
 
 openModal.addEventListener("click", () => {
