@@ -22,6 +22,8 @@ class Book {
 	}
 }
 
+//On page load stuff
+
 // This is an array that will hold all the default books
 const defaultBooks = [
 	new Book("The Hobbit", "J.R.R. Tolkien", 295, true),
@@ -29,6 +31,18 @@ const defaultBooks = [
 	new Book("Mistborn: The Final Empire", "Brandon Sanderson", 541, true),
 	new Book("The Eye of the World", "Robert Jordan", 782, false),
 ];
+
+let myLibrary = [];
+
+// Add default books to the library
+
+myLibrary.push(...defaultBooks);
+myLibrary.forEach(createBookCard);
+
+//Initalize form validation
+createFormValidation();
+
+// Event Listeners
 
 openModal.addEventListener("click", () => {
 	openBookModal();
@@ -38,37 +52,11 @@ modalSpan.addEventListener("click", () => {
 	closeBookModal();
 });
 
-let myLibrary = [];
-
-// Add default books to the library
-myLibrary.push(...defaultBooks);
-myLibrary.forEach(createBookCard);
-
-function updateCounters() {
-	const totalBooksRead = myLibrary.filter((book) => book.status).length;
-	const totalNumberBooks = myLibrary.length;
-	const totalPagesRead = myLibrary.reduce((accumulator, book) => {
-		if (book.status) {
-			return parseInt(accumulator, 10) + parseInt(book.pages, 10);
-		}
-		return accumulator;
-	}, 0);
-
-	readBooksResult.innerText = totalBooksRead;
-	unreadBooksResult.innerText = totalNumberBooks - totalBooksRead;
-	pagesCounter.innerText = totalPagesRead.toLocaleString();
-}
-
-// This isn't the best way to handle forms (although it works lol)
-// addBookToArray.addEventListener("click", () => {
-//   const newBook = createNewBook();
-//   myLibrary.push(newBook);
-//   createBookCard(newBook);
-//   closeBookModal();
-// });
+// Functions
 
 // The JustValidate library will take care of the form validation and error messages
 // It will also create a new book object and add it to the library if the form is valid
+
 function createFormValidation() {
 	// Create validation intance
 	const validation = new JustValidate("#form", {
@@ -79,7 +67,6 @@ function createFormValidation() {
 			color: "#dc3545",
 		},
 	});
-	console.log(validation);
 
 	validation
 		.addField("#title", [
@@ -159,26 +146,34 @@ function createBookCard(newBook) {
 	}
 	updateCounters();
 	readButton.addEventListener("click", () => {
-		if (newBook.status === false) {
-			newBook.status = true;
-			updateCounters();
-			bookCard.style.borderColor = "green";
-			readButtonText.textContent = "Mark as un-read";
-		} else {
-			newBook.status = false;
-			updateCounters();
-			bookCard.style.borderColor = "red";
-			readButtonText.textContent = "Mark as read";
+		changeBookStatus();
+
+		function changeBookStatus() {
+			if (newBook.status === false) {
+				newBook.status = true;
+				updateCounters();
+				bookCard.style.borderColor = "green";
+				readButtonText.textContent = "Mark as un-read";
+			} else {
+				newBook.status = false;
+				updateCounters();
+				bookCard.style.borderColor = "red";
+				readButtonText.textContent = "Mark as read";
+			}
 		}
 	});
 
 	deleteButton.addEventListener("click", () => {
-		const currentBookIndex = myLibrary.indexOf(newBook);
-		myLibrary.splice(currentBookIndex, 1);
-		onPageLibrary.textContent = "";
-		myLibrary.forEach(createBookCard);
-		updateCounters();
+		removeBookFromLibrary(newBook);
 	});
+}
+
+function removeBookFromLibrary(newBook) {
+	const currentBookIndex = myLibrary.indexOf(newBook);
+	myLibrary.splice(currentBookIndex, 1);
+	onPageLibrary.textContent = "";
+	myLibrary.forEach(createBookCard);
+	updateCounters();
 }
 
 function createNewBook() {
@@ -210,5 +205,17 @@ function closeBookModal() {
 	mainContainer.className = " main-container";
 }
 
-// Run the form validation on page load
-createFormValidation();
+function updateCounters() {
+	const totalBooksRead = myLibrary.filter((book) => book.status).length;
+	const totalNumberBooks = myLibrary.length;
+	const totalPagesRead = myLibrary.reduce((accumulator, book) => {
+		if (book.status) {
+			return parseInt(accumulator, 10) + parseInt(book.pages, 10);
+		}
+		return accumulator;
+	}, 0);
+
+	readBooksResult.innerText = totalBooksRead;
+	unreadBooksResult.innerText = totalNumberBooks - totalBooksRead;
+	pagesCounter.innerText = totalPagesRead.toLocaleString();
+}

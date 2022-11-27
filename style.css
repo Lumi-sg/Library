@@ -165,3 +165,8 @@ button {
 .modalIsOpen {
 	filter: blur(1px) brightness(0.8);
 }
+
+.just-validate-error-label {
+	margin: 1em;
+	font-weight: bold;
+}
