@@ -30,6 +30,7 @@ const defaultBooks = [
 	new Book("A Game of Thrones", "George R.R. Martin", 694, true),
 	new Book("Mistborn: The Final Empire", "Brandon Sanderson", 541, true),
 	new Book("The Eye of the World", "Robert Jordan", 782, false),
+	new Book("The Name of the Wind", "Patrick Rothfuss", 662, false),
 ];
 
 let myLibrary = [];

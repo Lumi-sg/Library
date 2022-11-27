@@ -5,14 +5,15 @@ body {
 
 .main-container {
 	display: grid;
-	grid-template-columns: minmax(50px, 0.8fr) minmax(250px, 5fr);
-	grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: minmax(50px, 0.6fr) minmax(250px, 3fr) minmax(50px, 0.6fr);
+	grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 0.2fr;
 	grid-template-areas:
-		"header header"
-		"sidebar library"
-		"sidebar library"
-		"sidebar library"
-		"sidebar library";
+		"header header header"
+		"sidebar library bookshelf"
+		"sidebar library bookshelf"
+		"sidebar library bookshelf"
+		"sidebar library bookshelf"
+		"footer footer footer";
 	height: 100vh;
 }
 
@@ -20,14 +21,12 @@ body {
 	grid-area: header;
 	display: flex;
 	width: auto;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
 	background-color: black;
-}
-
-#addBook {
-	color: #202020;
-	align-self: flex-end;
+	font-size: 3rem;
+	font-weight: b;
+	text-decoration: underline;
 }
 
 .logo-column {
@@ -42,16 +41,19 @@ body {
 	flex-direction: column;
 	font-size: large;
 	align-items: center;
+	justify-content: center;
 }
 
 .sidebar > h3 {
 	margin: 1rem;
-	font-size: larger;
-	font-weight: bold;
+	font-size: x-large;
+
 	text-decoration: underline;
 }
 
 .sidebar > p {
+	font-size: larger;
+	font-weight: bold;
 	margin-bottom: 1rem;
 }
 
@@ -160,6 +162,16 @@ button {
 	font-size: large;
 	font-weight: bold;
 	cursor: pointer;
+	background-color: #e9e9ed;
+	color: black;
+	transform: scale(1);
+	transition: 100ms;
+}
+
+#addBook:hover {
+	transform: scale(1.05);
+	transition: 100ms;
+	border: green 3px solid;
 }
 
 .modalIsOpen {
@@ -169,4 +181,32 @@ button {
 .just-validate-error-label {
 	margin: 1em;
 	font-weight: bold;
+}
+
+.footer {
+	font-size: larger;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-area: footer;
+	background-color: black;
+}
+
+.fa {
+	transition: transform 0.3s ease-in-out;
+}
+.fa:hover {
+	transform: rotate(360deg) scale(1.2);
+}
+
+a {
+	color: white;
+}
+
+.bookshelfPicture {
+	grid-area: bookshelf;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
