@@ -25,8 +25,9 @@ class Book {
 // This is an array that will hold all the default books
 const defaultBooks = [
 	new Book("The Hobbit", "J.R.R. Tolkien", 295, true),
-	new Book("A Game of Thrones", "George R.R. Martin", 694, false),
+	new Book("A Game of Thrones", "George R.R. Martin", 694, true),
 	new Book("Mistborn: The Final Empire", "Brandon Sanderson", 541, true),
+	new Book("New Spring", "Robert Jordan", 304, false),
 ];
 
 openModal.addEventListener("click", () => {
@@ -200,6 +201,7 @@ function resetModalValues() {
 function openBookModal() {
 	modal.style.display = "block";
 	mainContainer.className += " modalIsOpen";
+	document.querySelector("#title").focus();
 }
 
 function closeBookModal() {

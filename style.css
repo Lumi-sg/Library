@@ -6,7 +6,7 @@ body {
 .main-container {
 	display: grid;
 	grid-template-columns: minmax(50px, 0.8fr) minmax(250px, 5fr);
-	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr;
 	grid-template-areas:
 		"header header"
 		"sidebar library"
@@ -19,15 +19,14 @@ body {
 .header {
 	grid-area: header;
 	display: flex;
-	height: 20vh;
 	width: auto;
 	justify-content: flex-end;
+	align-items: center;
 	background-color: black;
 }
 
 #addBook {
 	color: #202020;
-
 	align-self: flex-end;
 }
 
