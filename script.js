@@ -147,26 +147,26 @@ function createBookCard(newBook) {
 	}
 	updateCounters();
 	readButton.addEventListener("click", () => {
-		changeBookStatus();
-
-		function changeBookStatus() {
-			if (newBook.status === false) {
-				newBook.status = true;
-				updateCounters();
-				bookCard.style.borderColor = "green";
-				readButtonText.textContent = "Mark as un-read";
-			} else {
-				newBook.status = false;
-				updateCounters();
-				bookCard.style.borderColor = "red";
-				readButtonText.textContent = "Mark as read";
-			}
-		}
+		changeBookStatus(newBook, bookCard, readButtonText);
 	});
 
 	deleteButton.addEventListener("click", () => {
 		removeBookFromLibrary(newBook);
 	});
+}
+
+function changeBookStatus(newBook, bookCard, readButtonText) {
+	if (newBook.status === false) {
+		newBook.status = true;
+		updateCounters();
+		bookCard.style.borderColor = "green";
+		readButtonText.textContent = "Mark as un-read";
+	} else {
+		newBook.status = false;
+		updateCounters();
+		bookCard.style.borderColor = "red";
+		readButtonText.textContent = "Mark as read";
+	}
 }
 
 function removeBookFromLibrary(newBook) {

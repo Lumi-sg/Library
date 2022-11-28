@@ -102,6 +102,13 @@ body {
 	height: auto;
 }
 
+.modalTopText {
+	font-weight: bold;
+	margin-bottom: 1rem;
+	text-decoration: underline;
+	font-size: larger;
+}
+
 /* The Close Button */
 .close {
 	color: #aaaaaa;
