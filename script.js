@@ -133,7 +133,7 @@ function createBookCard(newBook) {
 	const deleteButton = document.createElement("button");
 	const deleteButtonText = document.createTextNode("Remove Book");
 
-	title.textContent = `${newBook.title}`;
+	title.textContent = `"${newBook.title}"`;
 	author.textContent = `By: ${newBook.author}`;
 	pages.textContent = `Pages: ${newBook.pages}`;
 

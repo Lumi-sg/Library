@@ -67,7 +67,7 @@ body {
 }
 
 .bookCard {
-	margin: 2rem;
+	margin: 1rem;
 	padding: 0.5rem;
 	display: flex;
 	flex-direction: column;
