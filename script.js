@@ -64,7 +64,7 @@ function createFormValidation() {
 		focusInvalidField: true,
 		errorFieldCssClass: "is-invalid",
 		errorLabelStyle: {
-			fontSize: "14px",
+			fontSize: "18px",
 			color: "#dc3545",
 		},
 	});
@@ -88,13 +88,23 @@ function createFormValidation() {
 				errorMessage: "Please enter the number of pages",
 			},
 			{
+				rule: "number",
+				errorMessage: "Please enter a number",
+			},
+			{
 				rule: "minLength",
 				value: 1,
 				errorMessage: "Please enter a number of pages",
 			},
 			{
-				rule: "number",
-				errorMessage: "Please enter a number",
+				rule: "maxNumber",
+				value: 1000000,
+				errorMessage: "Please enter a number under 1,000,000",
+			},
+			{
+				rule: "minNumber",
+				value: 1,
+				errorMessage: "Please enter a number over 0",
 			},
 		])
 		.onSuccess(() => {
@@ -218,5 +228,9 @@ function updateCounters() {
 
 	readBooksResult.innerText = totalBooksRead;
 	unreadBooksResult.innerText = totalNumberBooks - totalBooksRead;
-	pagesCounter.innerText = totalPagesRead.toLocaleString();
+	if (totalPagesRead < 1000000) {
+		pagesCounter.innerText = totalPagesRead.toLocaleString();
+	} else {
+		pagesCounter.innerText = "Touch Grass";
+	}
 }
